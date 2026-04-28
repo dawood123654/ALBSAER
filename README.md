@@ -141,7 +141,7 @@
 </head>
 <body>
 
-<h1> شهادة حضور </h1>
+<h1>🎓 شهادة حضور - البصائر للتدريب</h1>
 
 <div class="card-wrapper">
   <canvas id="canvas"></canvas>
@@ -219,12 +219,29 @@ function drawCard() {
   }
 }
 
+function lockAll() {
+  document.getElementById('dlBtn').disabled = true;
+  document.getElementById('dlBtn').textContent = '✅ تم التحميل مسبقاً';
+  document.getElementById('nameInput').disabled = true;
+  document.getElementById('textColor').disabled = true;
+  document.querySelector('.btn-apply').disabled = true;
+  document.querySelector('.hint').textContent = 'تم تحميل الشهادة — لا يمكن التعديل أو التحميل مجدداً';
+}
+
 function downloadCard() {
   const name = document.getElementById('nameInput').value.trim() || 'شهادة-حضور';
   const link = document.createElement('a');
   link.download = `شهادة-${name}.png`;
   link.href = canvas.toDataURL('image/png');
   link.click();
+
+  localStorage.setItem('cert_downloaded', '1');
+  lockAll();
+}
+
+// Check on page load
+if (localStorage.getItem('cert_downloaded') === '1') {
+  window.addEventListener('DOMContentLoaded', lockAll);
 }
 
 // Allow pressing Enter to apply
@@ -234,3 +251,4 @@ document.getElementById('nameInput').addEventListener('keydown', e => {
 </script>
 </body>
 </html>
+ 
