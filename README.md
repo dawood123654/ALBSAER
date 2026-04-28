@@ -141,7 +141,7 @@
 </head>
 <body>
 
-<h1>🎓 شهادة حضور - البصائر للتدريب</h1>
+<h1> شهادة حضور - </h1>
 
 <div class="card-wrapper">
   <canvas id="canvas"></canvas>
